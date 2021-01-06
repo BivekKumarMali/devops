@@ -33,6 +33,14 @@ jobs:
         with:
           name: deploy_dist
           path: dist
+      - name: Simple deploy with git
+        uses: rdarida/simple-github-pages-deploy-action@v1
+        with: # optional
+          git-user: 'BivekKumarMali'
+          git-email: 'bivekkumar@promactinfo.com'
+          git-base-folder: 'dist'
+          commit-message: 'build'
+          branch: 'build'
   deploy:
       runs-on: ubuntu-latest
       needs: build
