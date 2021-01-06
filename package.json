@@ -1,15 +1,15 @@
 {
   "name": "devops",
   "version": "0.0.0",
-  "build:ci": "ng build --prod --sourceMap=false --base-href /YOUR_REPOSITORY_NAME_HERE/",
-  "test:ci": "ng test --watch=false --code-coverage --source-map true",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:ci": "ng build --prod --sourceMap=false --base-href /YOUR_REPOSITORY_NAME_HERE/",
+    "test:ci": "ng test --watch=false --code-coverage --source-map true"
   },
   "private": true,
   "dependencies": {
