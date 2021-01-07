@@ -14,16 +14,22 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      - uses: actions/cache@v1
+      - name: Cache node modules
+        uses: actions/cache@v2
         id: mycache
+        env:
+          cache-name: cache-node-modules
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ./node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
       - name: Install dependencies
-        # if: steps.mycache.outputs.cache-hit != 'true'
-        run: npm ci --prefer-offline
+        if: steps.mycache.outputs.cache-hit != 'true'
+        run: npm install
       - name: Build
         run: npm run build --dev --base-href=/devops/
       - name: Archive build
