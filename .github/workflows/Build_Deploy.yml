@@ -25,7 +25,7 @@ jobs:
         if: steps.mycache.outputs.cache-hit != 'true'
         run: npm ci --prefer-offline
       - name: Cache Verify
-        if: steps.mycache.outputs.cache-miss == 'true'
+        if: steps.mycache.outputs.cache-hit != 'false'
         run: npm cache add ~/.npm
       - name: Build
         run: npm run build --prod --sourceMap=false
