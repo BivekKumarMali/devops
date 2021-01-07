@@ -22,8 +22,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies
-        # if: steps.mycache.outputs.cache-hit != 'true'
+        #if: steps.mycache.outputs.cache-hit != 'true'
         run: npm ci --prefer-offline
+      - name: Cache Verify
+        run: npm cache verify
       - name: Build
         run: npm run build --prod --sourceMap=false
       - name: Archive build
