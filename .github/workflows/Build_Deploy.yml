@@ -28,7 +28,7 @@ jobs:
             ${{ runner.os }}-
       - name: Install dependencies
         if: steps.mycache.outputs.cache-hit != 'true'
-        run: npm ci --prefer-offline
+        run: npm install
       - name: Build
         run: npm run build --prod --sourceMap=false --base-href=/devops/
       - name: Archive build
