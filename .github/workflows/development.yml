@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Build
-        run: npm run build --dev --sourceMap=false --base-href=/devops/
+        run: npm run build --dev --base-href=/devops/
       - name: Archive build
         if: success()
         uses: actions/upload-artifact@v1
