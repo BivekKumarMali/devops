@@ -5,10 +5,10 @@ name: Development Build
 
 on:
   push:
-    branches: [ master ]
+    branches: [ test ]
 jobs:
   build:
-    name: Build and Test
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
