@@ -30,7 +30,7 @@ jobs:
         if: steps.mycache.outputs.cache-hit != 'true'
         run: npm ci --prefer-offline
       - name: Build
-        run: npm run build --prod --sourceMap=false
+        run: npm run build --prod --sourceMap=false --base-href=/devops/
       - name: Archive build
         if: success()
         uses: actions/upload-artifact@v1
