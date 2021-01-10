@@ -36,7 +36,7 @@ jobs:
         with:
           name: dist
           path: dist
-  deploy:
+  Deploy:
     runs-on: ubuntu-latest
     needs: build
     steps:
@@ -46,6 +46,11 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: dist
+      - uses: marceloprado/has-changed-path@v1
+        id: changed-front
+        with:
+          paths: packages/front
+        if: steps.changed-front.outputs.changed == 'true'
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
