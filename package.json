@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:ci": "ng build --prod --sourceMap=false --base-href=/devops/",
-    "test:ci": "ng test --watch=false --code-coverage --source-map true"
+    "dev-build:ci": "ng build --sourceMap=true --extract-css --optimization=false --aot=false"
   },
   "private": true,
   "dependencies": {

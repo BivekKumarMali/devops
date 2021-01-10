@@ -31,7 +31,7 @@ jobs:
         if: steps.mycache.outputs.cache-hit != 'true'
         run: npm install
       - name: Build
-        run: npm run build --dev --base-href=/devops/
+        run: npm run-script dev-build:ci
       - name: Archive build
         if: success()
         uses: actions/upload-artifact@v1
