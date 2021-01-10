@@ -19,7 +19,6 @@ jobs:
         env:
           cache-name: cache-node-modules
         with:
-        # npm cache files are stored in `~/.npm` on Linux/macOS
           path: ./node_modules
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
@@ -30,7 +29,7 @@ jobs:
         if: steps.mycache.outputs.cache-hit != 'true'
         run: npm install
       - name: Build
-        run: npm run build --prod --sourceMap=false --base-href=/devops/
+        run: npm run build --prod --base-href=/devops/
       - name: Archive build
         if: success()
         uses: actions/upload-artifact@v1
