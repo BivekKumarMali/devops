@@ -46,16 +46,19 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: dist
-      - name: Change File
-        id: files
-        uses: jitterbit/get-changed-files@v1
-      - run: |
-          for changed_file in ${{ steps.files.outputs.all }}; do
-            echo "Do something with this ${changed_file}."
-          done
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
           FOLDER: dist/devops
+      - name: Deploy to AWS S3
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws s3 cp \
+            --recursive \
+            --region ap-northeast-2 \
+             dist s3://myangular-app
+
