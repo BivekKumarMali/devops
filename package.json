@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:ci": "ng build --prod --sourceMap=false --base-href=/devops/",
+    "build:ci": "ng build --prod --sourceMap=false --output-hashing none --base-href=/devops/",
     "dev-build:ci": "ng build --sourceMap=true --extract-css --optimization=false --aot=false"
   },
   "private": true,
